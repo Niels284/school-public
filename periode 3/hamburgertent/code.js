@@ -9,7 +9,10 @@ const burgers = [
 
 function init() {
   const menu = document.querySelector(".menu");
-  burgers.forEach((burger) => {
+  let sortedBurgers = burgers.sort((a, b) =>
+    a.price > b.price ? 1 : a.price < b.price ? -1 : 0
+  );
+  sortedBurgers.forEach((burger) => {
     const burgerDiv = document.createElement("li");
     burgerDiv.className = "burger";
     burgerDiv.innerHTML = `
