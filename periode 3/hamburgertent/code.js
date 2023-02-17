@@ -1,3 +1,4 @@
+// array met burgers
 const burgers = [
   { name: "Big King XL", price: 5.95, picture: "bigking.png" },
   { name: "Bacon King XL", price: 6.15, picture: "baconking.png" },
@@ -11,8 +12,9 @@ function init() {
   const menu = document.querySelector(".menu");
   let sortedBurgers = burgers.sort((a, b) =>
     a.price > b.price ? 1 : a.price < b.price ? -1 : 0
-  );
+  ); // sorteert de burgers op prijs ASC
   sortedBurgers.forEach((burger) => {
+    // zet de data van de sortedBurgers in de li tag
     const burgerDiv = document.createElement("li");
     burgerDiv.className = "burger";
     burgerDiv.innerHTML = `
@@ -20,6 +22,6 @@ function init() {
       <p>${burger["name"]}</p>
       <p>€ ${burger["price"]}</p>
    `;
-    menu.appendChild(burgerDiv);
+    menu.appendChild(burgerDiv); // voegt de burgerDiv toe aan de unordered list met de class "menu" binnen de DOM.
   });
 }

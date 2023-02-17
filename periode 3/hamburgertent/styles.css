@@ -32,7 +32,7 @@ h1 {
   padding: 2em 3em;
 }
 
-/* burger css */
+/* styling van de container waar de burger tegels in zitten */
 
 .menu {
   position: relative;
@@ -45,6 +45,8 @@ h1 {
   margin: 0;
   padding: 0;
 }
+
+/* styling van de burger tegels */
 
 .burger {
   position: relative;
