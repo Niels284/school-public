@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* fonts */
+    --header-font: 'Verdana', sans-serif;
+    --default-font: 'Verdana', sans-serif;
+
+    /* colors */
+    --primary-color: #fff;
+    --secondary-color: #000;
+}
+
+body {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    font-family: var(--default-font);
+    background-color: var(--primary-color);
+}

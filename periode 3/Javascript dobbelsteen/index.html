@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dobbelsteen - opdracht</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="code.js" type="text/javascript" defer></script>
+</head>
+<body onload="init()">
+    <!-- <object data="img/svg/dobbelsteen_3.svg" width="200" height="200"></object> -->
+    <section class="leftSide">
+        <div class="dobbelsteenContainer">
+            <div class="dobbelsteen"></div>
+            <div class="ReRollButton">
+                <button onclick="roll()">Roll</button>
+            </div>
+        </div>
+        <div class="valueLogs">
+            <ul class="valueLogsList"></ul>
+        </div>
+    </section>
+    <section class="rightSide">
+        <div class="valueLogs">
+            <h2>Value logs</h2>
+            <h3 class="averageValue"></h3>
+            <ul class="countedValueLogs"></ul>
+        </div>
+    </section>
+</body>
+</html>
