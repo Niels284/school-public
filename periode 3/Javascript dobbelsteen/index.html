@@ -9,7 +9,6 @@
     <script src="code.js" type="text/javascript" defer></script>
 </head>
 <body onload="init()">
-    <!-- <object data="img/svg/dobbelsteen_3.svg" width="200" height="200"></object> -->
     <section class="leftSide">
         <div class="dobbelsteenContainer">
             <div class="dobbelsteen"></div>
@@ -22,10 +21,15 @@
         </div>
     </section>
     <section class="rightSide">
-        <div class="valueLogs">
-            <h2>Value logs</h2>
+        <div class="otherLogs">
+            <h2>Other logs</h2>
             <h3 class="averageValue"></h3>
-            <ul class="countedValueLogs"></ul>
+            <button class="sortButton" data-order="count" onclick="sortCountedLogs()">Order ASC by dobbelsteen values</button>
+            <ul class="countedValues"></ul>
+        </div>
+        <div class="valueLogs2">
+            <h2>Value logs</h2>
+            <ol class="valueLogsList2"></ol>
         </div>
     </section>
 </body>
