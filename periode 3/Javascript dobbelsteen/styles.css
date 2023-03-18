@@ -12,6 +12,12 @@
     /* colors */
     --primary-color: #000;
     --secondary-color: #fff;
+
+    /* dicePositions */
+    --dicePosition: -200px;
+    --dicePositionX: 0;
+    --dicePositionY: 0;
+    --dicePositionZ: 0;
 }
 
 body {
@@ -21,7 +27,7 @@ body {
     width: 100vw;
     height: 100vh;
     font-family: var(--default-font);
-    background-color: var(--secondary-color);
+    background: radial-gradient(rgb(5, 221, 245), rgb(6, 150, 253));
 }
 
 /* leftSide */
@@ -29,26 +35,9 @@ body {
     position: relative;
     width: 50vw;
     height: 100vh;
-    background-color: var(--secondary-color);
 }
 
 /* leftSide > top */
-
-.dobbelsteenContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    height: 75%;
-    width: 100%;
-    box-shadow: inset 0 0 20px var(--primary-color);
-}
-
-.dobbelsteen {
-    margin: 0 auto 40px auto;
-    filter: drop-shadow(2px 2px 6px var(--primary-color));
-}
 
 .ReRollButton {
     position: relative;
@@ -108,30 +97,41 @@ body {
     opacity: 0;
 }
 
-.valueLogsList > li:last-child {
-    transform: scale(1.25);
-    filter: drop-shadow(2px 2px 6px var(--primary-color));
-    margin: 0 30px;
-    opacity: 1;
-} .valueLogsList > li:nth-last-of-type(2){
-    filter: drop-shadow(2px 2px 4px var(--primary-color));
-    margin: 0 10px;
-    opacity: 0.85;
-} .valueLogsList > li:nth-last-of-type(3) {
-    transform: scale(0.75);
-    filter: drop-shadow(2px 2px 2px var(--primary-color));
-    opacity: 0.75;
-} .valueLogsList > li:nth-last-of-type(4) {
-    transform: scale(0.50);
-    filter: drop-shadow(2px 2px 1px var(--primary-color));
-    margin: 0 -15px;
-    opacity: 0.5;
-} .valueLogsList > li:nth-last-of-type(5) {
-    transform: scale(0.25);
-    filter: drop-shadow(2px 2px 0px var(--primary-color));
-    margin: 0 -30px;
-    opacity: 0.5;
-} 
+@media screen and (min-width: 768px) {
+    .valueLogsList > li:last-child {
+        transform: scale(1.25);
+        filter: drop-shadow(2px 2px 6px var(--primary-color));
+        margin: 0 30px;
+        opacity: 1;
+    } .valueLogsList > li:nth-last-of-type(2){
+        filter: drop-shadow(2px 2px 4px var(--primary-color));
+        margin: 0 10px;
+        opacity: 0.85;
+    }
+}
+@media screen and (min-width: 1300px) {
+    .valueLogsList > li:nth-last-of-type(3) {
+        transform: scale(0.75);
+        filter: drop-shadow(2px 2px 2px var(--primary-color));
+        opacity: 0.75;
+    }
+}
+@media screen and (min-width: 1650px) {
+    .valueLogsList > li:nth-last-of-type(4) {
+        transform: scale(0.50);
+        filter: drop-shadow(2px 2px 1px var(--primary-color));
+        margin: 0 -15px;
+        opacity: 0.5;
+    } 
+}
+@media screen and (min-width: 1950px) {
+   .valueLogsList > li:nth-last-of-type(5) {
+        transform: scale(0.25);
+        filter: drop-shadow(2px 2px 0px var(--primary-color));
+        margin: 0 -30px;
+        opacity: 0.5;
+    } 
+}
 
 /* rightSide */
 
@@ -143,7 +143,6 @@ body {
     flex-direction: column;
     width: 50vw;
     height: 100vh;
-    background-color: var(--secondary-color);
     box-shadow: inset 0 0 20px var(--primary-color);
 }
 
@@ -159,6 +158,7 @@ body {
     margin: 20px;
     border-radius: 10px;
     box-shadow: inset 0 0 10px var(--primary-color);
+    background-color: rgb(5, 221, 245);
 }
 
 .otherLogs > h2, .valueLogs2 > h2 {
@@ -263,4 +263,164 @@ body {
     margin-right: 10px;
 }
 
-/* end css */
+/* dobbelsteen */
+
+.dobbelsteenContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    height: 75%;
+    width: 100%;
+    box-shadow: inset 0 0 20px var(--primary-color);
+}
+
+.dobbelsteenBox {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    width: 30vw;
+    margin-bottom: 20px;
+    perspective: 1000px;
+}
+
+.box {
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    transform-style: preserve-3d;
+    cursor: grab;
+}
+
+.dobbelsteenBox:has(.box.active) > .box {
+    animation: defaultDiceAnimation 4s linear infinite;
+}
+
+.dobbelsteenBox:has(.box.pause) > .box {
+    animation-play-state: paused;
+}
+
+.dobbelsteenBox:has(.box.falling) > .box {
+    animation: fallingDiceAnimation 3s linear forwards;
+}
+
+.dobbelsteenBox:has(.box.idle) > .box {
+    animation: idleDiceAnimation 15s linear infinite;
+}
+
+@keyframes idleDiceAnimation {
+    0% {
+        transform: rotateX(160deg) rotateY(0deg) rotateZ(135deg) scale(1);
+    }
+    50% {
+        transform: rotateX(160deg) rotateY(180deg) rotateZ(135deg) scale(0.95);
+    }
+    100% {
+        transform: rotateX(160deg) rotateY(360deg) rotateZ(135deg) scale(1);
+    }
+}
+
+@keyframes defaultDiceAnimation {
+    0% { transform: translateZ(-100px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    16% { transform: translateZ(-100px) rotateX(180deg) rotateY(180deg) rotateZ(0deg); }
+    33% { transform: translateZ(-100px) rotateX(360deg) rotateY(90deg) rotateZ(180deg); }
+    50% { transform: translateZ(-100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+    66% { transform: translateZ(-100px) rotateX(180deg) rotateY(360deg) rotateZ(270deg); }
+    83% { transform: translateZ(-100px) rotateX(270deg) rotateY(180deg) rotateZ(180deg); }
+    100% { transform: translateZ(-100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
+
+@keyframes fallingDiceAnimation {
+    0% {
+        transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    10% {
+        transform: translateY(var(--dicePosition)) rotateX(130deg) rotateY(40deg) rotateZ(290deg);
+    }
+    20% {
+        transform: translateY(0px) rotateX(20deg) rotateY(250deg) rotateZ(120deg);
+    }
+    40% {
+        transform: translateY(var(--dicePosition)) rotateX(var(--dicePositionX)) rotateY(var(--dicePositionY)) rotateZ(var(--dicePositionZ));
+    }
+    100% {
+        transform: translateY(var(--dicePosition)) rotateX(var(--dicePositionX)) rotateY(var(--dicePositionY)) rotateZ(var(--dicePositionZ));
+    }
+}
+
+.card {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 250px;
+    text-align: center;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: 2px solid var(--primary-color); 
+    font-size: 32px;
+}
+
+.card > img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.card.selected > img {
+    animation: selectedDiceAnimation 2s linear infinite;
+}
+
+@keyframes selectedDiceAnimation {
+    0% {
+        filter: invert(20%) sepia(50%) saturate(850%) hue-rotate(80deg) brightness(100%) contrast(50%);
+    }
+    25% {
+        filter: invert(20%) sepia(50%) saturate(850%) hue-rotate(80deg) brightness(100%) contrast(75%);
+    }
+    50% {
+        filter: invert(20%) sepia(50%) saturate(850%) hue-rotate(80deg) brightness(100%) contrast(100%);
+    }
+    75% {
+        filter: invert(20%) sepia(50%) saturate(850%) hue-rotate(80deg) brightness(100%) contrast(75%);
+    }
+    100% {
+        filter: invert(20%) sepia(50%) saturate(850%) hue-rotate(80deg) brightness(100%) contrast(50%);
+    }
+}
+
+.selected {
+    fill: red;
+}
+
+#front {
+    transform: translateZ(125px);
+}
+#back {
+    transform: translateZ(-125px) rotateY(180deg);
+}
+#left {
+    right: 125px;
+    transform: rotateY(-90deg);
+}
+#right {
+    left: 125px;
+    transform: rotateY(90deg);
+}
+#top {
+    bottom: 125px;
+    transform: rotateX(90deg);
+}
+#bottom {
+    top: 125px;
+    transform: rotateX(-90deg);
+}
+
+/* end css */   
+
