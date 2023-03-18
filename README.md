@@ -6,4 +6,5 @@ Hieronder noteer ik de status van de opdrachten, de definitie van "done" is klaa
 
 ### periode 3:
 * 16-02-2023 - hamburgertent (done)
-* 01-03-2023 - Javscript dobbelsteen (done)
+* 01-03-2023 - Javscript dobbelsteen V2 (done)
+* 18-03-2023 - Javscript dobbelsteen V3 (3D-animation) (done)
