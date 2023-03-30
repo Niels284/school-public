@@ -138,15 +138,18 @@ dobbelsteenBox.addEventListener("mousedown", () => {
       }
     }
 
-    // mouseup event - registrates the dice position, and starts the 'falling' animation
+    // mouseup event - registrates the dice position, and starts the 'falling' animation (see styles.css from rule 336)
     function mouseup(e) {
-      // falling dice
+      // generate a random dieValue
       roll();
       console.log("dice is falling");
+      // fills the variable '--dicePosition' in styles.css for the 'fallingDiceAnimation'
       root.style.setProperty(
         "--dicePosition",
         Math.abs(200 - (e.clientY - 250)) + "px"
       );
+      // fills the variable '--dicePosition(X/Y/Z)' in styles.css for the 'fallingDiceAnimation'.
+      // It sets the dice to the right position of the dieValue
       root.style.setProperty(
         "--dicePositionX",
         dicePositions[diceValue - 1].positionX + "deg"
@@ -159,8 +162,12 @@ dobbelsteenBox.addEventListener("mousedown", () => {
         "--dicePositionZ",
         dicePositions[diceValue - 1].positionZ + "deg"
       );
+
+      // pause rotating dice
       this.classList.add("pause");
+      // starts falling dice animation
       this.classList.add("falling");
+      // prevents to activate the dice animation while falling
       statusArray.pauseDice = true;
 
       // removes event listeners
@@ -188,7 +195,7 @@ dobbelsteenBox.addEventListener("mousedown", () => {
     valueLogs.addEventListener("mouseover", defaultDiceReset);
   }
 
-  // default dice reset
+  // default dice reset - removes eventlisteners, the style attribute and adds the 'idle' class for the 'idleDiceAnimation'
   function defaultDiceReset() {
     dobbelsteenBox.removeEventListener("mousemove", mousemove);
     dobbelsteenBox.removeEventListener("mouseup", mouseup);
@@ -197,16 +204,19 @@ dobbelsteenBox.addEventListener("mousedown", () => {
     dobbelsteenBox.removeAttribute("style");
     dobbelsteenBox.classList.add("pause");
     dobbelsteenBox.classList.add("idle");
+    // makes it possible to activate new events for the dice
     statusArray.pauseDice = false;
     console.log("dice stopped moving and position is succesfully resetted");
   }
 
-  // extreme dice reset
+  // extreme dice reset - removes the style attribute and falling dice animation and adds the 'idle' class for the 'idleDiceAnimation'
   function extremeDiceReset() {
     dobbelsteenBox.removeAttribute("style");
     dobbelsteenBox.classList.add("idle");
     dobbelsteenBox.classList.remove("falling");
+    // generates a new random dieValue
     diceValue = Math.floor(Math.random() * 6 + 1);
+    // makes it possible to activate new events for the dice
     statusArray.pauseDice = false;
   }
 });
