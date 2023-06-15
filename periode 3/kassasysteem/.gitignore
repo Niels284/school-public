@@ -12,5 +12,5 @@
 .idea
 
 node_modules
-.vscode-test/
 *.vsix
+.parcel-cache
