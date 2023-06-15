@@ -1,0 +1,13 @@
+@import "./variables";
+
+html {
+    font-size: var(--normal-font-size);
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+body {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+}

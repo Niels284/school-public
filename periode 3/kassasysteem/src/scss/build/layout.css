@@ -1,0 +1,22 @@
+:root {
+  --small-font-size: .75rem;
+  --normal-font-size: 1rem;
+  --medium-font-size: 1.25rem;
+  --big-font-size: 1.25rem;
+  --primary-color: #000;
+  --secondary-color: #fff;
+}
+
+html {
+  font-size: var(--normal-font-size);
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
+body {
+  width: 100vw;
+  height: 100%;
+  position: relative;
+}
+
+/*# sourceMappingURL=layout.css.map */

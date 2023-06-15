@@ -1,0 +1,1 @@
+{"mappings":"ACAA","sources":["src/scss/mediaqueries.scss","src/scss/_variables.scss"],"sourcesContent":["@import \"./variables\";\n\n/* desktop styling */\n@media screen and (min-width: 900px) {\n    \n}",null],"names":[],"version":3,"file":"mediaqueries.css.map","sourceRoot":"../../../"}

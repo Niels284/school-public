@@ -1,0 +1,26 @@
+{
+  "name": "kassa-system",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "parcel index.php",
+    "build": "parcel build index.php",
+    "watch": "concurrently \"parcel watch './src/scss/*.scss' --dist-dir './src/scss/build'\" \"parcel watch './src/js/*.js' --dist-dir './src/js/build'\""
+  },
+  "keywords": [],
+  "author": "Niels",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "parcel": "^2.9.2",
+    "qrcode": "^1.5.3"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.2",
+    "browser-sync": "^2.29.3",
+    "buffer": "^6.0.3",
+    "concurrently": "^8.2.0",
+    "os-browserify": "^0.3.0",
+    "sass": "^1.63.4"
+  }
+}
