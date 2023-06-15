@@ -10,3 +10,7 @@
 
 .prettierignore
 .idea
+
+node_modules
+.vscode-test/
+*.vsix
